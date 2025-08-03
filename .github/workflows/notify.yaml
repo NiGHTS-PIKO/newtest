@@ -7,7 +7,7 @@ on:
 
 jobs:
   debug-runner:
-    runs-on: [self-hosted, ARM64, Linux]
+    runs-on: self-hosted
     steps:
       - name: Check Pi Runner health
         run: echo "🎉 Pi runner is functioning and received the job!"
