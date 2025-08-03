@@ -1,13 +1,13 @@
-name: Pi Minimal Test
+name: Pi Test Job
 
 on:
   push:
     branches:
-      - master
+      - "*"
 
 jobs:
-  webhook:
-    runs-on: [self-hosted, ARM64, Linux]
+  echo-test:
+    runs-on: self-hosted
     steps:
-      - name: Test Echo
-        run: echo "🎉 GitHub Runner is alive!"
+      - name: Say Hello
+        run: echo "Pi received the job!"
