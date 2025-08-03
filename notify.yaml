@@ -3,14 +3,19 @@ name: Notify Raspberry Pi
 on:
   push:
     branches:
-      - main
+      - master  # または 'main' に変更してください
 
 jobs:
   send-webhook:
     runs-on: ubuntu-latest
     steps:
-      - name: Send webhook to Raspberry Pi
+      - name: 🔧 Install Tailscale
         run: |
-          curl -X POST https://raspberrypi.taileca4fa.ts.net/webhook \
-               -H "Content-Type: application/json" \
-               -d '{"event": "push", "repo": "${{ github.repository }}", "author": "${{ github.actor }}"}'
+          curl -fsSL https://tailscale.com/install.sh | sh
+          sudo tailscale up --authkey ${{ secrets.TS_AUTHKEY }}
+
+      - name: 📡 Send webhook to Raspberry Pi
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+               -d '{"event": "push", "repo": "${{ github.repository }}", "author": "${{ github.actor }}"}' \
+               http://100.101.30.82:8080/webhook
