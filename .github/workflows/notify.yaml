@@ -1,0 +1,16 @@
+name: Notify Raspberry Pi
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  send-webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send webhook to Raspberry Pi
+        run: |
+          curl -X POST https://raspberrypi.taileca4fa.ts.net/webhook \
+               -H "Content-Type: application/json" \
+               -d '{"event": "push", "repo": "${{ github.repository }}", "author": "${{ github.actor }}"}'
