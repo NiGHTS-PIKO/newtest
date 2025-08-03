@@ -1,5 +1,13 @@
-- name: Sanity Check
-  run: |
-    echo "Job started"
-    sleep 3
-    echo "Job ended"
+name: Pi Debug Test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  debug-runner:
+    runs-on: [self-hosted, ARM64, Linux]
+    steps:
+      - name: Check Pi Runner health
+        run: echo "🎉 Pi runner is functioning and received the job!"
