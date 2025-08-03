@@ -1,13 +1,13 @@
-name: Pi Test Job
+name: Pi Debug Test
 
 on:
   push:
     branches:
-      - "*"
+      - master
 
 jobs:
-  echo-test:
-    runs-on: self-hosted
+  debug-runner:
+    runs-on: [self-hosted, ARM64, Linux]
     steps:
-      - name: Say Hello
-        run: echo "Pi received the job!"
+      - name: Check Pi Runner health
+        run: echo "🎉 Pi runner is functioning and received the job!"
