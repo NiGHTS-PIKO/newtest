@@ -1,4 +1,4 @@
-name: Notify Raspberry Pi
+name: Pi Minimal Test
 
 on:
   push:
@@ -6,14 +6,8 @@ on:
       - master
 
 jobs:
-  send-webhook:
+  webhook:
     runs-on: [self-hosted, ARM64, Linux]
-    env:
-      REPO: ${{ github.repository }}
-      AUTHOR: ${{ github.actor }}
     steps:
-      - name: 📡 Send webhook to Raspberry Pi
-        run: |
-          curl -X POST -H "Content-Type: application/json" \
-               -d "{\"event\": \"push\", \"repo\": \"$REPO\", \"author\": \"$AUTHOR\"}" \
-               http://100.101.30.82:8080/webhook
+      - name: Test Echo
+        run: echo "🎉 GitHub Runner is alive!"
