@@ -7,7 +7,7 @@ on:
 
 jobs:
   send-webhook:
-    runs-on: self-hosted
+    runs-on: [self-hosted, ARM64, Linux]
     steps:
       - name: 🔧 Install Tailscale
         run: |
