@@ -7,7 +7,7 @@ on:
 
 jobs:
   send-webhook:
-    runs-on: foo-runner
+    runs-on: self-hosted
     steps:
       - name: 📡 Send webhook to Raspberry Pi
         run: |
