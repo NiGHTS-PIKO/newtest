@@ -7,13 +7,8 @@ on:
 
 jobs:
   send-webhook:
-    runs-on: ubuntu-latest
+    runs-on: foo-runner
     steps:
-      - name: 🔧 Install Tailscale
-        run: |
-          curl -fsSL https://tailscale.com/install.sh | sh
-          sudo tailscale up --authkey ${{ secrets.TS_AUTHKEY }}
-
       - name: 📡 Send webhook to Raspberry Pi
         run: |
           curl -X POST -H "Content-Type: application/json" \
